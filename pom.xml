@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>index</groupId>
-  <artifactId>HelloLucene</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <name>Hello Lucene</name>
+  <artifactId>index</artifactId>
+  <version>0.0.3-SNAPSHOT</version>
+  <name>Troob Index</name>
   <description>Mavenized version of Kelvin Tan's example</description>
 
       <properties>
@@ -31,7 +31,7 @@
 	                      <arguments>
 	                          <argument>-classpath</argument>
 	                          <classpath />
-	                          <argument>index.HelloLucene</argument>
+	                          <argument>index.index</argument>
 	                      </arguments>
 	                  </configuration>
 	              </execution>
@@ -50,7 +50,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>index.HelloLucene</mainClass>
+                  <mainClass>index.index</mainClass>
                   <!-- 主类的位置，例如上图文件，主类配置应为： -->
                   <!-- <mainClass>{top.nihilwater.App}</mainClass> -->
                 </transformer>

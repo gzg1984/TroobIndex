@@ -36,7 +36,7 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 
 import java.io.IOException;
 
-public class HelloLucene {
+public class index {
 
     public static void main(String[] args) throws IOException {
        
