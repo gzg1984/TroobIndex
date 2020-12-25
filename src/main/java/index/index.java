@@ -19,7 +19,6 @@ import org.apache.lucene.store.RAMDirectory;
 
 import java.nio.file.Paths;
 import org.apache.lucene.store.FSDirectory;
-//import me.juanmacias.SourceFileAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
@@ -32,7 +31,7 @@ import org.apache.lucene.search.highlight.Fragmenter;
 
 import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.util.Version;
+//import org.apache.lucene.util.Version;
 
 
 import java.io.IOException;
