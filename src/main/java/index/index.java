@@ -42,7 +42,7 @@ public class index {
         Options options = new Options();
         options.addOption("h", "help", false, "Print this usage information");
         options.addOption("v", "verbose", false, "Print out VERBOSE information");
-        options.addOption("f", "file", true, "File to save program output to");
+        options.addOption("f", "file", true, "Index Folder");
         options.addOption("q", "query", true, "Key word to query");
         // Parse the program arguments
         try {
