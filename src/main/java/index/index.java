@@ -31,9 +31,14 @@ import org.apache.commons.cli.CommandLine;
 
 public class index {
     static boolean verbose = false;
-    static String file = "/opt/file_root/index_base/spdk_v17_10_1/";
+    //static String file = "/opt/file_root/index_base/spdk_v17_10_1/";
 
-    static String queryString = "LICENSE";
+    //static String queryString = "LICENSE";
+
+    static String file = "/Users/gaozhigang/Downloads/Index";
+
+    static String queryString = "mysqlshCount";
+
 
     static String field = "content";
 
