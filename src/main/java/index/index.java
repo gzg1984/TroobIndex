@@ -8,8 +8,7 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.store.Directory;
 
-import java.nio.file.Paths;
-import org.apache.lucene.store.FSDirectory;
+ 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
@@ -149,7 +148,7 @@ public class index {
 
     private static void hilightQuery() throws IOException {
         Analyzer troobAnalyzer = new SourceFileAnalyzer();
-        Directory diskIndex = FSDirectory.open(Paths.get(file));
+        Directory diskIndex = store.Open();
         IndexReader reader = DirectoryReader.open(diskIndex);
         IndexSearcher searcher = new IndexSearcher(reader);
 
