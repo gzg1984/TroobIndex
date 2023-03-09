@@ -1,14 +1,10 @@
 package index;
 
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.store.Directory;
 
- 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
@@ -30,14 +26,12 @@ import org.apache.commons.cli.CommandLine;
 
 public class index {
     static boolean verbose = false;
-    //static String file = "/opt/file_root/index_base/spdk_v17_10_1/";
+ 
+    // static String queryString = "LICENSE";
 
-    //static String queryString = "LICENSE";
-
-    static String file = "/Users/gaozhigang/Downloads/Index";
+    static String globle_file_as_optiong = "/Users/gaozhigang/Downloads/Index";
 
     static String queryString = "mysqlshCount";
-
 
     static String field = "content";
 
@@ -61,7 +55,7 @@ public class index {
                 verbose = true;
             }
             if (commandLine.hasOption('f')) {
-                file = commandLine.getOptionValue('f');
+                globle_file_as_optiong = commandLine.getOptionValue('f');
             }
 
             if (commandLine.hasOption('q')) {
@@ -93,7 +87,7 @@ public class index {
             if (str != null) {
                 // System.out.println((i + 1) + " . "+ doc.get("filePath") +"/"+
                 // doc.get("fileName")+ " 高亮 内容 ： "+str);
-                //System.out.println("# "+doc.get("filePath"));
+                // System.out.println("# "+doc.get("filePath"));
                 System.out.println(str);
                 // tokenStream=TokenSources.getTokenStream( field, null,
                 // contents,lxranalyzer,-1);
@@ -133,7 +127,7 @@ public class index {
         for (int i = 0; i < topDocs.scoreDocs.length; i++) {
             Document doc = searcher.doc(topDocs.scoreDocs[i].doc);
             System.out.println((i + 1) + " . " + doc.get("filePath"));
-            //System.out.println((i + 1) + " . ");
+            // System.out.println((i + 1) + " . ");
             // public static TokenStream getTokenStream(String field, Fields tvFields,
             // String text, Analyzer analyzer,
             // int maxStartOffset)
@@ -147,10 +141,17 @@ public class index {
     }
 
     private static void hilightQuery() throws IOException {
+        IndexSearcher searcher;
+        try {
+            searcher = store.Open(globle_file_as_optiong);
+        } catch (Exception e) {
+            System.out.println("store.Open() failed  Error:" +
+                    e.getMessage());
+            return;
+        }
+
         Analyzer troobAnalyzer = new SourceFileAnalyzer();
-        Directory diskIndex = store.Open();
-        IndexReader reader = DirectoryReader.open(diskIndex);
-        IndexSearcher searcher = new IndexSearcher(reader);
+
 
         String field = "content";
         QueryParser parser = new QueryParser(field, troobAnalyzer);
@@ -168,12 +169,11 @@ public class index {
             return;
         }
 
-        System.out.println("= Query Field And Key Word[" + query.toString()+"]");
+        System.out.println("= Query Field And Key Word[" + query.toString() + "]");
         // 返回前10条
         hilightShowDocs(searcher, query, troobAnalyzer);
 
-        diskIndex.close();
-        reader.close();
+        store.Close();
 
     }
 }
